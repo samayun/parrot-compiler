@@ -74,12 +74,13 @@ export default function Home() {
           </p>
           <div className='row'>
             <div className='col-6'>
-              <textarea className='w-100' rows={15} onChange={onChangeCode} value={code} />
+              <textarea className='w-100' rows={15} onChange={onChangeCode} value={code} style={{background: 'black', paddingLeft: '20px', border: 'none', color: 'white'}}/>
             </div>
             <div className='col-6 bg-dark' >
               <p className='w-100 text-white'>
                 { isError ? <i style={{color: 'red'}}>{outputMessage}</i> :  <i style={{color: 'green'}}>   {'>>' +outputMessage}</i> } <br></br>
-                {output}
+                {/* {output} */}
+                <textarea className='w-100' rows={15} value={output} style={{background: 'none', borderColor: 'yellow', color: 'yellowgreen'}}/>
               </p>
             </div>
           </div>

@@ -1,11 +1,8 @@
-const shell = require('child_process')
-
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+const shell = require('child_process');
 
 export default function handler(req, res) {
   try {
   const code = req.body.code;
-  
   // Compile
   shell.execSync(`cd public && echo ${JSON.stringify(code)} > hello.c`);
    

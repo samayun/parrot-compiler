@@ -1,6 +1,6 @@
 ## Parrot Compiler
 
-<img src="docs/main.png"/>
+<img src="docs/output.png"/>
 
 
 ## Getting Started
