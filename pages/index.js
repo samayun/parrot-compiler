@@ -48,7 +48,29 @@ export default function Home() {
 
   function onClear() {
     setCode(defaultState);
-    setOutput('');
+    setOutput("");
+    setOutputMessage(`Please write program here`);
+    setError(false);
+  }
+
+  function selectExamples(){
+    setCode(`
+    // Print numbers from 1 to 10
+    #include <stdio.h>
+    
+    int main() {
+      int i;
+    
+      for (i = 1; i < 11; ++i)
+      {
+        printf("আই এর মান =  %d \\\n", i);
+      }
+      return 0;
+    }
+`);
+    setOutput("");
+    setOutputMessage(`Please write program here`);
+    setError(false);
   }
 
   return (
@@ -70,7 +92,8 @@ export default function Home() {
 
           <p className={styles.run}>
             <button className='btn btn-success text-center' onClick={() => onRun()}> RUN  </button>
-            <button className='btn btn-warning-outline text-center' onClick={() => onClear()}> CLEAR  </button>
+            <button className='m-1 btn btn-danger text-center' onClick={() => onClear()}> CLEAR  </button>
+            <button className='m-1 btn btn-warning text-center' onClick={() => selectExamples()}> Examples  </button>
           </p>
           <div className='row'>
             <div className='col-6'>

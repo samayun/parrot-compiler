@@ -12,6 +12,6 @@ export default function handler(req, res) {
   return res.status(200).json({ error: false, message: "Successfully compiled" , result: output.toString()})
 
   } catch (error) {
-    return res.status(400).json({ error: true, message: "FAILED TO COMPILE", result: "" })
+    return res.status(400).json({ error: true, message: "FAILED TO COMPILE", result: "", errorData: error })
   }
 }
