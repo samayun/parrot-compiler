@@ -1,5 +1,4 @@
 import Head from 'next/head'
-// import Image from 'next/image'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
@@ -15,9 +14,30 @@ export default function Home() {
   `
   const [code, setCode] = useState(defaultState);
   const [output, setOutput] = useState('');
+  const [outputMessage, setOutputMessage] = useState('');
+  const [isError, setError] = useState(false);
 
-  function onRun() {
-    setOutput(`Hello World !`)
+  async function onRun() {
+    try {
+      const response =  await fetch(`/api/compile`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code })
+      });
+  
+      const output = await response.json();
+
+      setError(output.error);
+      setOutputMessage(output.message);
+      setOutput(output?.result);
+      
+    } catch (error) {
+      setOutput("");
+      setOutputMessage(output.message);
+      setError(false)
+    }
   }
 
 
@@ -58,7 +78,7 @@ export default function Home() {
             </div>
             <div className='col-6 bg-dark' >
               <p className='w-100 text-white'>
-                {' >> '}
+                { isError ? <i style={{color: 'red'}}>{outputMessage}</i> :  <i style={{color: 'green'}}>   {'>>' +outputMessage}</i> } <br></br>
                 {output}
               </p>
             </div>
